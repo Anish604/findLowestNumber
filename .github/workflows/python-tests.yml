@@ -1,0 +1,22 @@
+name: test
+
+on: push
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: 3.x
+
+    - run: python find_lowest_number.py test_data/test1_input.txt out1.txt
+    - run: diff out1.txt test_data/test1_expected.txt
+
+    - run: python find_lowest_number.py test_data/test2_input.txt out2.txt
+    - run: diff out2.txt test_data/test2_expected.txt
+
+    - run: python find_lowest_number.py test_data/test3_input.txt out3.txt
+    - run: diff out3.txt test_data/test3_expected.txt
